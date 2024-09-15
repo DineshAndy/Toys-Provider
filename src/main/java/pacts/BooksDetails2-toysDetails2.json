@@ -1,0 +1,122 @@
+{
+  "consumer": {
+    "name": "BooksDetails2"
+  },
+  "interactions": [
+    {
+      "description": "Getting all toys details",
+      "providerStates": [
+        {
+          "name": "Toys Details"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/allToysDetails"
+      },
+      "response": {
+        "body": [
+          {
+            "category": "string",
+            "id": "string",
+            "price": 100,
+            "toys_name": "string"
+          },
+          {
+            "category": "string",
+            "id": "string",
+            "price": 100,
+            "toys_name": "string"
+          }
+        ],
+        "generators": {
+          "body": {
+            "$[*].category": {
+              "size": 20,
+              "type": "RandomString"
+            },
+            "$[*].id": {
+              "size": 20,
+              "type": "RandomString"
+            },
+            "$[*].toys_name": {
+              "size": 20,
+              "type": "RandomString"
+            }
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 2
+                }
+              ]
+            },
+            "$[*].category": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[*].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[*].price": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            },
+            "$[*].toys_name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "application/json(;\\s?charset=[\\w\\-]+)?"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-jvm": {
+      "version": "4.2.1"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "toysDetails2"
+  }
+}
