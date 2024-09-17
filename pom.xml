@@ -89,7 +89,7 @@
 		       <configuration>
 		       <pactBrokerUrl>https://mailme.pactflow.io/</pactBrokerUrl>
 		       <pactBrokerToken>HFhVyD4hIECd-mF63-ReDw</pactBrokerToken>
-       </configuration>
+       		   </configuration>
 			</plugin>
 		</plugins>
 	</build>
