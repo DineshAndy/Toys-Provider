@@ -82,15 +82,40 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>au.com.dius.pact.provider</groupId>
-		        <artifactId>maven</artifactId>
-		        <version>4.1.11</version>
-		       <configuration>
-		       <pactBrokerUrl>https://mailme.pactflow.io/</pactBrokerUrl>
-		       <pactBrokerToken>HFhVyD4hIECd-mF63-ReDw</pactBrokerToken>
-       		   </configuration>
-			</plugin>
+
+<plugin>
+	<groupId>au.com.dius.pact.provider</groupId>
+	<artifactId>maven</artifactId>
+	<version>4.1.11</version>
+	<configuration>
+		<systemPropertyVariables>
+			<property>
+				<pact.verifier.publishResults>true</pact.verifier.publishResults>
+			</property>
+		</systemPropertyVariables>
+		<serviceProviders>
+			<serviceProvider>
+				<name>GET_ALL_CONTEXT</name>
+				<protocol>http</protocol>
+				<host>localhost</host>
+				<port>8181</port>
+				<path>/TFW/</path>
+				<!--<stateChangeUrl>http://localhost:8080/tasks/pactStateChange</stateChangeUrl>-->
+				<pactBrokerUrl>https://mailme.pactflow.io/</pactBrokerUrl>
+			</serviceProvider>
+			<serviceProvider>
+				<name>GET_ALL_TENANTS</name>
+				<protocol>http</protocol>
+				<host>localhost</host>
+				<port>8181</port>
+				<path>/TFW/</path>
+				<!--<stateChangeUrl>http://localhost:8080/tasks/pactStateChange</stateChangeUrl>-->
+				<pactBrokerUrl>https://mailme.pactflow.io/</pactBrokerUrl>
+			</serviceProvider>
+		</serviceProviders>
+	</configuration>
+</plugin>
+
 		</plugins>
 	</build>
 	<repositories>
