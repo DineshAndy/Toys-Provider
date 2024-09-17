@@ -1,8 +1,7 @@
 name: Provider Contract Verification
 'on':
-  push:
-    branches:
-      - main;
+  workflow_dispatch:
+
 jobs:
   provider_test:
     runs-on: ubuntu-latest
